@@ -16,4 +16,6 @@ public class SystemConstants {
      */
     public static final String SECRET_KEY = "mj9CJbTtWcWwhvfIkab8srywp16zCXUQ";
 
+    public static final String MQ_NAME_SERVER = "stream.mq.server";
+
 }

@@ -1,8 +1,9 @@
 package com.mqdemo.service;
 
+import com.mqdemo.dto.Result;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface BaiduAIService {
 
-    String actionOcr(MultipartFile multipartFile);
+    Result actionOcr(MultipartFile multipartFile,String uuid);
 }

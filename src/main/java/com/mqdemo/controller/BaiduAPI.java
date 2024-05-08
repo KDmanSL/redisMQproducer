@@ -1,5 +1,7 @@
 package com.mqdemo.controller;
 
+import cn.hutool.core.lang.UUID;
+import com.mqdemo.dto.Result;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +19,9 @@ public class BaiduAPI {
 
     @PostMapping("/actionOcr")
     @ResponseBody
-    public String actionOcr(MultipartFile file){
-        return this.baiduAIService.actionOcr(file);
+    public Result actionOcr(@RequestParam("file") MultipartFile file){
+        String uuid1 = UUID.randomUUID().toString(true);
+        return baiduAIService.actionOcr(file,uuid1);
     }
-
 
 }

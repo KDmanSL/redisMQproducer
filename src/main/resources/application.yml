@@ -1,3 +1,21 @@
 Spring:
   application:
     name: Baidu-MQ
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  data: # redis
+    redis:
+      host: 119.3.158.9
+      database: 1
+      password: redis
+      lettuce:
+        pool:
+          max-active: 20
+          max-idle: 20
+          min-idle: 1
+          time-between-eviction-runs: 10s
+server:
+  tomcat:
+    max-swallow-size: 100MB
