@@ -9,8 +9,6 @@ local uuid = ARGV[1]
 -- 1.2.文件路径
 local fileUrl = ARGV[2]
 
-
-
 -- 3.6.发送消息到队列中， XADD stream.orders * k1 v1 k2 v2 ...
 redis.call('xadd', 'stream.mq.server', '*', 'uuid', uuid, 'file_url', fileUrl)
 return 0
