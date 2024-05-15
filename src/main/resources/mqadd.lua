@@ -8,7 +8,12 @@
 local uuid = ARGV[1]
 -- 1.2.文件路径
 local fileUrl = ARGV[2]
-
+-- 检查组是否存在
+if redis.call('EXISTS', 'stream.mq.server')==0 then
+    -- 创建组
+    -- XGROUP CREATE stream.mq.server g1 0 MKSTREAM
+    redis.call('XGROUP', 'CREATE', 'stream.mq.server', 'g1', '0', 'MKSTREAM')
+end
 -- 3.6.发送消息到队列中， XADD stream.orders * k1 v1 k2 v2 ...
 redis.call('xadd', 'stream.mq.server', '*', 'uuid', uuid, 'file_url', fileUrl)
 return 0
