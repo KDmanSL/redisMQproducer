@@ -4,6 +4,7 @@ import cn.hutool.core.lang.UUID;
 import com.baidu.aip.ocr.AipOcr;
 import com.mqdemo.dto.Result;
 import com.mqdemo.service.BaiduAIService;
+import com.mqdemo.utils.GetIPlocalUtil;
 import com.mqdemo.utils.SystemConstants;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -45,14 +46,8 @@ public class BaiduAIServiceImpl implements BaiduAIService {
 
     @Override
     public Result actionOcr(MultipartFile multipartFile, String uuid) {
-        // 获取本地服务ip，用来拼接图片的url
-        InetAddress addr;
-        try {
-            addr = InetAddress.getLocalHost();
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        }
-        String host = addr.getHostAddress();
+
+        String host = GetIPlocalUtil.getRealIP();
 
         if (multipartFile == null) {
             return Result.fail("图片不能为空");
