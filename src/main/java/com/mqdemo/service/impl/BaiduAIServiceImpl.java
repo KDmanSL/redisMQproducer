@@ -11,6 +11,7 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.connection.stream.*;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -33,7 +34,8 @@ import static com.mqdemo.utils.SystemConstants.MQ_NAME_SERVER;
 @Slf4j
 @Service
 public class BaiduAIServiceImpl implements BaiduAIService {
-
+    @Value("${web.local-host}")
+    private String localHost;
     @Resource
     private StringRedisTemplate stringRedisTemplate;
     private static final DefaultRedisScript<Long> SECKILL_SCRIPT;
@@ -47,7 +49,7 @@ public class BaiduAIServiceImpl implements BaiduAIService {
     @Override
     public Result actionOcr(MultipartFile multipartFile, String uuid) {
 
-        String host = GetIPlocalUtil.getRealIP();
+        String host = localHost;
 
         if (multipartFile == null) {
             return Result.fail("图片不能为空");

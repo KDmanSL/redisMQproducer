@@ -20,3 +20,6 @@ server:
   tomcat:
     max-swallow-size: 100MB
   port: 8082
+
+web:
+  local-host: 192.168.27.54
